@@ -1,5 +1,5 @@
-// A better way to deal with "end-of-line" words:
-// avoid \n by splitting into an array of lines (& words)
+// A better way to deal with 'and' & other "end-of-line" words:
+// avoid \n by splitting the text into an array (lines & words)
 
 // text.split('\n') to nested array: [[line 0: 'word', 'word', 'word'], etc.]
 // map each line per 2A
@@ -16,12 +16,11 @@ let terms = ['john', 'and', 'jazz', 'jazz.', 'Milt'];
 
 function highlightMatches(searchTerm, text) {
   let lines = text.split('\n');
-  lines.forEach((line, idx, src) => src[idx] = line.split(' '));
 
   let re = new RegExp(searchTerm, 'i');
 
   for (let i = 0; i < lines.length; i += 1) {
-    lines[i] = lines[i].map(word => {
+    lines[i] = lines[i].split(' ').map(word => {
       if (word.slice(-1) !== searchTerm.slice(-1)) {
         return word;
       } else if (word.match(re)) {
@@ -29,10 +28,9 @@ function highlightMatches(searchTerm, text) {
       } else {
         return word;
       }
-    });
+    }).join(' ');
   }
 
-  lines.forEach((line, idx, src) => src[idx] = line.join(' '));
   return lines.join('\n');
 }
 
