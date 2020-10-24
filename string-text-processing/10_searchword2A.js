@@ -58,6 +58,31 @@ function oneLiner(text) {
 }
 
 function formatLine(line) {
+  let lines = [];
+  let words = line.split(' ');
+
+  let charCount = 0;
+  let temp = [];
+
+  for (let i = 0; i < words.length; i += 1) {
+    charCount += words[i].length;
+    temp.push(words[i]); // to inner array
+
+    if (charCount > 57) {
+      lines.push(temp.join(' ')); // to outer array
+
+      // reset counter & inner array
+      charCount = 0;
+      temp.length = 0;
+    }
+  }
+
+  lines.push(temp.join(' '));
+  return lines.join('\n');
+}
+
+/*
+function formatLine(line) {
   // set up subarrays
   let formatted = [];
   for (let i = 0; i < line.length; i += 57) {
@@ -91,6 +116,7 @@ function formatLine(line) {
 
   return formatted.join('\n');
 }
+*/
 
 terms.forEach(term => console.log(highlightMatches(term, text)));
 
