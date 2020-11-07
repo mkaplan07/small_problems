@@ -24,7 +24,7 @@ let longerText = longText +
   '-- that this nation, under God, shall have a new birth of freedom -- ' +
   'and that government of the people, by the people, for the people, ' +
   'shall not perish from the earth.';
-  
+
 // input: string, output: longest sentence (string) & wordcount (num)
 
 // * about  *
@@ -83,3 +83,5 @@ function solution(str) {
 let tests = [longText, longerText, "Where do you think you're going? What's up, Doc?", "To be or not to be! Is that the question?"];
 // tests.forEach(el => findLongestSentence(el));
 tests.forEach(el => solution(el));
+
+// test
