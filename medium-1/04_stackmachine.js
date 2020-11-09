@@ -54,34 +54,35 @@ function stackMachine() {
   program.split(' ').filter(el => el !== '').forEach(token => {
     if (!stack.length && stackOps.includes(token.toUpperCase())) {
       empty(register, token);
-    }
-    switch (token.toUpperCase()) {
-      case 'PUSH':
-        stack.push(register);
-        break;
-      case 'ADD':
-        register += stack.pop();
-        break;
-      case 'SUB':
-        register -= stack.pop();
-        break;
-      case 'MULTI':
-        register *= stack.pop();
-        break;
-      case 'DIV':
-        register = Math.floor(register / stack.pop());
-        break;
-      case 'MOD':
-        register = Math.floor(register % stack.pop());
-        break;
-      case 'POP':
-        register = stack.pop();
-        break;
-      case 'PRINT':
-        console.log(`Reg ${register}.`);
-        break;
-      default:
-        register = Number(token);
+    } else {
+      switch (token.toUpperCase()) {
+        case 'PUSH':
+          stack.push(register);
+          break;
+        case 'ADD':
+          register += stack.pop();
+          break;
+        case 'SUB':
+          register -= stack.pop();
+          break;
+        case 'MULTI':
+          register *= stack.pop();
+          break;
+        case 'DIV':
+          register = Math.floor(register / stack.pop());
+          break;
+        case 'MOD':
+          register = Math.floor(register % stack.pop());
+          break;
+        case 'POP':
+          register = stack.pop();
+          break;
+        case 'PRINT':
+          console.log(`Reg ${register}.`);
+          break;
+        default:
+          register = Number(token);
+      }
     }
   });
   return register;
